@@ -1,2 +1,2 @@
 # aplikacje-www
-BLEDNY KOD
+BLEDNY KOD TO NIEZ£Y GIT
