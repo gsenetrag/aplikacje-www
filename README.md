@@ -1,1 +1,2 @@
 # aplikacje-www
+BLEDNY KOD
