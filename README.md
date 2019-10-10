@@ -1,2 +1,2 @@
 # aplikacje-www
-BLEDNY KOD
+BLEDNY KOD 320 JESTEM ADAM MAŁYSZ
