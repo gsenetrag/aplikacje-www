@@ -75,8 +75,11 @@ WSGI_APPLICATION = 'ewybory.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'senetrag',
+        'USER': 'senetrag',
+        'PASSWORD': 'qwerty123',
+        'HOST': 'bad.uwm.edu.pl',
     }
 }
 
@@ -105,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GMT'
 
 USE_I18N = True
 
