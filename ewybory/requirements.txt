@@ -1,0 +1,4 @@
+django==2.0.13
+djangorestframework
+mysqlclient==1.4.6
+libssl-dev
