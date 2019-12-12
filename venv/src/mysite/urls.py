@@ -23,5 +23,6 @@ urlpatterns = [
     path('hehepost/', views.IdealWeight),
     path('wybierz_liste/', views.WybierzListe),
     path('zaglosuj/', views.Zaglosuj),
-    
+    path('wyswietl_wyniki_kandydatow/', views.WyswietlWynikiKandydatow),
+    path('wyswietl_wyniki_partii/', views.WyswietlWynikiPartii),
 ]

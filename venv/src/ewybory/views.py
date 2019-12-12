@@ -97,13 +97,57 @@ def Zaglosuj(data):
         if kandydat:
             print(woj_kan + " " + woj_wyb)
             if woj_kan == woj_wyb:
-                print("Zajebiście")
                 Kandydaci.objects.all().filter(id=id_kan).update(liczba_glosow=F('liczba_glosow') + 1)
 
 
     lista_kandydatow = Kandydaci.objects.order_by('partia').filter(wojewodztwo=wojewodztwo)
     return JsonResponse("",safe=False)
 
+
+@api_view(["POST"])
+def WyswietlWynikiKandydatow(data):
+    d = JSONParser().parse(data)
+    lista_kandydatow = Kandydaci.objects.order_by('-liczba_glosow')
+    stringus = ''
+    for i in lista_kandydatow:
+        stringus += i.imie+" "
+        stringus += i.nazwisko+" "
+        stringus += str(i.liczba_glosow)+" | "
+    print(lista_kandydatow)
+    return JsonResponse(stringus,safe=False)
+
+
+@api_view(["POST"])
+def WyswietlWynikiPartii(data):
+    d = JSONParser().parse(data)
+    lista_kandydatow = Kandydaci.objects.order_by('liczba_glosow')
+    pis = 0
+    konfederacja = 0
+    po = 0
+    wiosna = 0
+    for i in lista_kandydatow:
+        liczba_glosow = i.liczba_glosow
+        if i.partia == "PiS":
+            pis += liczba_glosow
+        elif i.partia == "Konfederacja":
+            konfederacja += liczba_glosow
+        elif i.partia == "PO":
+            po += liczba_glosow
+        elif i.partia == "Wiosna":
+            wiosna += liczba_glosow
+
+    
+    suma = pis+konfederacja+po+wiosna
+    pisProc = pis/suma
+    konfederacjaProc = konfederacja/suma
+    poProc = po/suma
+    wiosnaProc = wiosna/suma
+        
+    stringus = "W liczbach głosow: PiS: " + str(pis) + " | " + "Konfederacja: " + str(konfederacja) + " | " + "PO: " + str(po) + " | " + "Wiosna: " + str(wiosna)
+    stringus2 = " || W procentach: PiS: " + str(pisProc) + " | " + "Konfederacja: " + str(konfederacjaProc) + " | " + "PO: " + str(poProc) + " | " + "Wiosna: " + str(wiosnaProc)
+    return JsonResponse(stringus+" "+stringus2,safe=False)
+
+    
 
 
 @api_view(["POST"])
